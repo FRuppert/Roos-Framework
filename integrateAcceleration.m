@@ -1,8 +1,9 @@
-function [velocity,position]=getAcceleration(accelPoints,timeStep)
+function [velocity,position,totalTime]=integrateAcceleration(accelPoints,timeStep)
 %This function integrates a given Acceleration value vector to get
 %velocities and position
 %   Inputs:
 %   accelPoints: row vector of accelerations
+%   timeStep: time step between acceleration points
 velocity=zeros(length(accelPoints));
 position=zeros(length(accelPoints));
 
@@ -12,4 +13,4 @@ position(1)=velocity(1)*timeStep;
         velocity(idx+1)=velocity(idx)+accelPoints(idx+1)*timeStep;
         position(idx+1)=position(idx)+velocity(idx+1);
     end
-    
+ totalTime=timeStep*length(accelPoints);   

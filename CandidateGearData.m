@@ -1,12 +1,9 @@
-function gearData=getGearData;
-
-%% Gearcandidate 1
+%Candidate gear data file.
+%Fredrik Roos, December 2004.
 maxGearRPM = 6000; %Max ang. vel (motor side) RPM
 gearEff = 0.97;    %Efficiency
-inertiaGear=0;               %Gear inertia
-
-
-gearData=[maxGearRPM;gearEff; inertiaGear];
+Jg=0;               %Gear inertia
+Ngear = [3 4 5 7 9]; %Gear ratio vector
 
 
 

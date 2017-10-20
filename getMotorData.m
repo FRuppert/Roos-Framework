@@ -3,6 +3,14 @@ function motorCandidates= getMotorData;
 %This function adds motor data from this list to the data matrix used for
 %selections
 %
+% Structure:
+% 1: Motor name
+% 2: speed constant
+% 3: torque constant
+% 4: winding resistance
+% 5: motor inertia
+% 6: max RPM
+
 %To add a new motor just copy an existing block and change the values
 
 %% U8 Kv170

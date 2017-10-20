@@ -25,40 +25,40 @@ acc(411:420) = 0;
 acc(421:440) = -Acc;
 acc(441:501) = 0;
 timeStep= 0.01; %resultion on load cycle
-time=(0:timeStep:5); %time vector
-totalTime = timeStep*length(time); %total time
+t=(0:timeStep:5); %time vector
+tau = timeStep*length(t); %total time
 
-velocity = length(time);
-position = length(time);
+v = t;
+p = t;
 summation=0;
 summation2 = 0;
 
-for idx=1 : length(acc)
-    summation = summation + acc(idx)*timeStep;
-    velocity(idx) = summation;
-    summation2= summation2 +velocity(idx)*timeStep;
-    position(idx) = summation2;
-    velocity(120) = 0.1;
-    velocity(440) = 0.1;
-    velocity(230) = -0.1;
-    velocity(350) = -0.1;
+for i=1 : length(acc)
+    summation = summation + acc(i)*timeStep;
+    v(i) = summation;
+    summation2= summation2 +v(i)*timeStep;
+    p(i) = summation2;
+    v(120) = 0.1;
+    v(440) = 0.1;
+    v(230) = -0.1;
+    v(350) = -0.1;
 end
 
 %Load Torque vector
 JL = 0.012;
 TL =7.5;
 
-Tl = sign(velocity)*TL +acc*JL;
+Tl = sign(v)*TL +acc*JL;
 
-MaxLRPM = max(velocity)*60/(2*pi); %Maximum RPM during the loadcycle
+MaxLRPM = max(v)*60/(2*pi); %Maximum RPM during the loadcycle
 
 figure
 %subplot(2,1,1); plot(t,acc,'b');
 hold on;
 
-subplot(2,1,1); plot(time,velocity,'k:','linewidth',1.5);
+subplot(2,1,1); plot(t,v,'k:','linewidth',1.5);
 hold on;
-subplot(2,1,1); plot(time,position,'g','linewidth',1.5);
+subplot(2,1,1); plot(t,p,'g','linewidth',1.5);
 %grid;
 set(gca,'Fontsize',12)
 xlabel('time [s]')
@@ -71,20 +71,20 @@ legend('Ang. Velocity [rad/s]', 'Pos [rad]')
 
 %Load constants....for RMS calculations rms = sqrt(Cr^2*n^2*k1+k2/(n^2)+2*Cr*k3)
 %Torque
-k1 = sum(acc.^2*timeStep)/totalTime;
-k2 = sum(Tl.^2*timeStep)/totalTime;
-k3 = sum(Tl.*acc*timeStep)/totalTime;
+k1 = sum(acc.^2*timeStep)/tau;
+k2 = sum(Tl.^2*timeStep)/tau;
+k3 = sum(Tl.*acc*timeStep)/tau;
 Tlmax = max(abs(Tl));
 Tlrms = sqrt(k2);
 
 
 
-subplot(2,1,2);plot(time,Tl,'b','linewidth',1.5);
+subplot(2,1,2);plot(t,Tl,'b','linewidth',1.5);
 hold on;
-temp=ones(size(time))*Tlrms;
-subplot(2,1,2);line(time,temp,'Color','g','LineStyle','--');
-temp=ones(size(time))*Tlmax;
-subplot(2,1,2);line(time,temp,'Color','r','LineStyle','-.');
+temp=ones(size(t))*Tlrms;
+subplot(2,1,2);line(t,temp,'Color','g','LineStyle','--');
+temp=ones(size(t))*Tlmax;
+subplot(2,1,2);line(t,temp,'Color','r','LineStyle','-.');
 
 set(gca,'Fontsize',12)
 %grid;
@@ -96,14 +96,14 @@ legend('Load Torque', ['T_{RMS} ', num2str(Tlrms(1)),' Nm'], ['T_{Peak} ', num2s
 
 %Power...T*w
 figure
-Pl = Tl.*velocity;
-plot(time,Pl,'linewidth',1.5);
+Pl = Tl.*v;
+plot(t,Pl,'linewidth',1.5);
 %grid;
-Plmean=norm(Pl,1)*timeStep/totalTime;
+Plmean=norm(Pl,1)*timeStep/tau;
 Plmax=max(Pl);
 hold on
-line(time,ones(size(time))*Plmean,'Color','g','LineStyle','--')
-line(time,ones(size(time))*Plmax,'Color','r','LineStyle','-.')
+line(t,ones(size(t))*Plmean,'Color','g','LineStyle','--')
+line(t,ones(size(t))*Plmax,'Color','r','LineStyle','-.')
 title('Power as function of time');
 xlabel('Time [s]')
 ylabel('Power [W]')
@@ -113,9 +113,9 @@ legend('Power','Mean Power','Max Power');
 %Only positive energy are comming in to the system...
 
 Wtemp =Pl;
-for idx=1:length(Wtemp)
-    if(Wtemp(idx) < 0)
-        Wtemp(idx) = 0;
+for i=1:length(Wtemp)
+    if(Wtemp(i) < 0)
+        Wtemp(i) = 0;
     end
 end
     
