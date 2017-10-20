@@ -1,36 +1,34 @@
 %Candidate motor data
-function motorCandidate= getMotorData;
+function motorCandidates= getMotorData;
+%This function adds motor data from this list to the data matrix used for
+%selections
+%
+%To add a new motor just copy an existing block and change the values
 
-RPMmax = 8000; %Maximum motor speed.
 %% U8 Kv170
-motorName= 'U8KV170';
-speedConstant=170;  %[rpm/V]
-torqueConstant=60/(2*pi*SpeedConstant); %[Nm/A]
-resistance=0.089;   %[Ohm]
-inertia=0;  %[kgcm^2]
-maxRPM=10000;
-motor=[motorName; speedConstant; torqueConstant; resistance;inertia*1e-4;rpmMAX];
-motorCandidate=[motorCandidate; motor];
+tempID=1;
+motorName(tempID)= 'U8KV170';
+speedConstant(tempID)=170;  %[rpm/V]
+resistance(tempID)=0.089;   %[Ohm]
+inertia(tempID)=0;  %[kgcm^2]
+maxRPM(tempID)=5000;
 
-%% Tmotor 4004KV
-motorName= '4004KV400';
-speedConstant=400;  %[rpm/V]
-torqueConstant=60/(2*pi*SpeedConstant); %[Nm/A]
-Resistance=0.452;   %[Ohm]
-inertia=0;  %[kgcm^2]
-motor=[motorName; speedConstant; torqueConstant; resistance;inertia*1e-4;rpmMAX];
-motorCandidate=[motorCandidate; motor];
+%% Tmotor 4004KV300
+tempID=tempID+1;
+motorName(tempID)= '4004KV300';
+speedConstant(tempID)=300;  %[rpm/V]
+resistance(tempID)=0.2325;   %[Ohm]
+inertia(tempID)=0.1294;  %[kgcm^2]
+maxRPM(tempID)=6100;
 
-%% Tmotor 4006KV
-motorName= '400KV380';
-speedConstant=380;  %[rpm/V]
-torqueConstant=60/(2*pi*SpeedConstant); %[Nm/A]
-Resistance=0.194;   %[Ohm]
-inertia=0;  %[kgcm^2]
-motor=[motorName; speedConstant; torqueConstant; resistance;inertia*1e-4;rpmMAX];
-motorCandidate=[motorCandidate; motor];
+%% Tmotor 4006KV380
+tempID=tempID+1;
+motorName(tempID)= '4006KV380';
+speedConstant(tempID)=380;  %[rpm/V]
+resistance(tempID)=0.194;   %[Ohm]
+inertia(tempID)=0;  %[kgcm^2]
+maxRPM(tempID)=5000;
 
-
-
-
+%% Create data matrix
+motorCandidates=[motorName; speedConstant; 60/(2*pi*SpeedConstant); resistance;inertia.*1e-4;maxRPM];
 
