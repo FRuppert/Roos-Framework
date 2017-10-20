@@ -1,4 +1,4 @@
-function [gearbox]= calculateGearboxInertia(density, teeth,modul, thickness)
+function [gearbox]= calculateGearboxInertia
 % THis function calculates thepossible gear ratio and sorts them by size
 % and calculates the complete reflected inertia of both spurgears for the
 % ratio 
@@ -26,5 +26,3 @@ gearbox(2,:)=gearboxTemp;
 
 
 
-%sort the ratios by size and use the same sorting for the respective
-%inertias

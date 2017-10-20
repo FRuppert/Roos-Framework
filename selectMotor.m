@@ -9,7 +9,8 @@ gearRatioResolution=0.1;
 motors=getMotorData;
 
 %load gear data
-gears=getGearData;
+[gearData,teeth]=getGearData;
+gearbox=calculateGearboxInertia;
 
 [velocity,position,totalTime]=integrateAcceleration(accelPoints,timeStep);
 %calculate matrix
@@ -42,14 +43,27 @@ workLoad = sum(workTemp*timeStep);
 
 %calculate max gear ratio for motor-gear combinations
 for idx=1:size(motors,2)
-    maxGearRatio(idx) = round(1/gearRatioResolution*min(motors(6,idx), gears(1,idx)/MaxLRPM)*gearRatioResolution;
+    maxGearRatio(idx) = round(1/gearRatioResolution*min(motors(6,idx), max(gears(1,idx))/min(gears(1,idx)/MaxLRPM)*gearRatioResolution;
     gearRatioVector=[1:gearRatioResolution:maxGearRatio(idx)];
-end;
+end
 
+%calculate load torque part CP
 for idx=1:size(gears,2)
     loadTorquePart=torquePoints.*velocity/gears(2,idx);
 end
 
+%calculate required RMS torque
 for idx=1:size(motors,2)
-    for idx2=1:size(gears,2)
-        torqueRMS(idx,:)=sqrt((motors(3,idx)+gears(2,idx2)
+    for idx2=1:size(gearbox,2)
+        torqueRMS(idx,:)=   sqrt((motors(3,idx)+gearbox(1,idx2)^2*gearbox(1,idx2)^2*k1
+                            +1/(gearbox(1,idx2)^2*gearData(2,1)^2)*k2
+                            +2*((motors(3,idx)+gearbox(1,idx2))/gearData(2,1)*k3);
+                            
+        if torqueRMS(idx,idx2)>motors(3,idx)
+            torqueRMS(idx,idx2)= NaN;
+            torquePeak(idx,idx2)=NaN;
+            powerMax(idx,idx2)=NaN;
+            work(idx,idx2)=NaN;
+        else
+            torqueInstant=(motors(3,idx)+gearbox(1,idx2)*accelPoints
+            

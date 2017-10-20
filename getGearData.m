@@ -1,4 +1,4 @@
-function gearData=getGearData
+function [gearData,teeth]=getGearData
 
 %% Gearcandidate 1
 maxGearRPM = 6000; %Max ang. vel (motor side) RPM
@@ -7,7 +7,7 @@ density=
 modul=1;
 teeth=[10,20,30,40,50,60];
 
-gearData=[maxGearRPM;gearEff; inertiaGear];
+gearData=[maxGearRPM;gearEff; density,modul];
 
 
 
