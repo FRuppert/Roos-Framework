@@ -2,14 +2,17 @@ function [gearbox]= calculateGearboxInertia
 % THis function calculates thepossible gear ratio and sorts them by size
 % and calculates the complete reflected inertia of both spurgears for the
 % ratio 
+% output:
+% gearbox(1) = gear ratios
+% gearbox(2) = respective gearbox inertia
 [gearData,teeth]=getGearData;
-radius=teeth.*modul;
+radius=teeth.*gearData(4,:);
 for idx1=1:length(teeth)
    for idx2=1:length(teeth)
        possibleRatios(idx1,idx2)=teeth(idx2)/teeth(idx1);
        
-       gearboxInertia(idx1,idx2)=  0.5*pi.*radius(idx1).^2*density*thickness.*radius(idx1).^2
-                                +0.5*pi.*radius(idx2).^2*density*thickness.*radius(idx2).^2; 
+       gearboxInertia(idx1,idx2)=  0.5*pi*radius(idx1)^2*gearData(3)*gearData(5)*radius(idx1)^2 ...
+                                +0.5*pi*radius(idx2)^2*gearData(3)*gearData(5)*radius(idx2)^2; 
        
    end
 end
