@@ -6,16 +6,17 @@ function [gearData,teeth]=getGearData
 % 2: gear efficiency
 % 3: material density
 % 4: gear module
-%
+% 5: thickness
 % teeth: array of possible teeth counts
 %% Gear candidate 1
 maxGearRPM = 6000;  %Max ang. vel (motor side) RPM
 gearEff = 0.97;     %Efficiency
-density= 1.4;        %[g/cm^3]
+density= 1.4;       %[g/cm^3]
 modul=1;            %gear modul
-teeth=[10,20,30,40,50,60];  % available spur gears
+thickness=5;        %[mm]
+teeth=[10,20,30,40,50,60,80];  % available spur gears
 
-gearData=[maxGearRPM;gearEff; density*1e-9;modul];
+gearData=[maxGearRPM;gearEff; density*1e-9;modul;thickness];
 
 
 

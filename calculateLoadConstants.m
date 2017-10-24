@@ -3,9 +3,9 @@ function  [k1, k2, k3]=calculateLoadConstants(accelPoints,torquePoints,timeStep)
 % load case scenario
 
 % calculate Load constants 
-k1=sum(accelPoints.^2*timeStep)/totalTime;
-k2 = sum(torquePoints.^2*timeStep)/totalTime;
-k3 = sum(torquePoints.*accelPoints*timeStep)/totalTime;
+k1=sum(accelPoints.^2*timeStep)/(timeStep*length(accelPoints));
+k2 = sum(torquePoints.^2*timeStep)/(timeStep*length(accelPoints));
+k3 = sum(torquePoints.*accelPoints*timeStep)/(timeStep*length(accelPoints));
 
 
 
