@@ -9,7 +9,7 @@ set(gca,'ColorOrder',[0 0 1],...
       'LineStyleOrder','-|:|--|-.')
 xlabel('Gear ratio')
 ylabel('Torque [Nm]')
-% title(['Motor RMS torque as function of gear ratio, T_{l,rms} = ',num2str(torqueLoadRMS), 'Nm'])
+ title(['Motor RMS torque as function of gear ratio, T_{l,rms} = ',num2str(torqueLoadRMS), 'Nm'])
 
 subplot(2,2,2)
 hold on;
@@ -18,7 +18,7 @@ set(gca,'ColorOrder',[0 0 1],...
       'LineStyleOrder','-|:|--|-.')
 xlabel('Gear ratio')
 ylabel('Peak Power [W]')
-% title(['Motor peak power (P_{mech} + P_{loss}) as function of gear ratio, P_{l,max} = ',num2str(powerLoadMax), 'W'])
+ title(['Motor peak power (P_{mech} + P_{loss}) as function of gear ratio, P_{l,max} = ',num2str(powerLoadMax), 'W'])
 
 subplot(2,2,3)
 hold on;
@@ -27,7 +27,7 @@ set(gca,'ColorOrder',[0 0 1],...
       'LineStyleOrder','-|:|--|-.')
 xlabel('Gear ratio')
 ylabel('Energy [J]')
-% title(['Consumed energy W_{l} = ',num2str(workLoad), 'J'])
+ title(['Consumed energy W_{l} = ',num2str(workLoad), 'J'])
 
 subplot(2,2,4)
 hold on;
@@ -36,7 +36,7 @@ set(gca,'ColorOrder',[0 0 1],...
       'LineStyleOrder','-|:|--|-.')
 xlabel('Gear ratio')
 ylabel('Peak Torque [Nm]')
-% title(['Motor peak torque as function of gear ratio, T_{l,peak} = ',num2str(torqueLoadMax), 'Nm'])
+ title(['Motor peak torque as function of gear ratio, T_{l,peak} = ',num2str(torqueLoadMax), 'Nm'])
 
 subplot(2,2,1) 
 hold on;
