@@ -14,7 +14,7 @@ gearEff = 0.97;     %Efficiency
 density= 1.4;       %[g/cm^3]
 modul=1;            %gear modul
 thickness=5;        %[mm]
-teeth=[10,20,30,40,50,60,80];  % available spur gears
+teeth=[1,2,3,4,5];  % available spur gears
 
 gearData=[maxGearRPM;gearEff; density*1e-9;modul;thickness];
 

@@ -2,46 +2,17 @@
 %Modify the file to implement the load in the design case.
 %Run this file before the motor selection file is executed.
 %Fredrik Roos, December 2004.
-close all;
-format short;
-clear all;
 
-
-% Acceleration, speed and position vectors.
-Acc=150;
-acc(1:20) = 0;
-acc(21:30) = Acc;
-acc(31:40) = -Acc;
-acc(41:60) = 0;
-acc(61:70) = -Acc;
-acc(71:80) = Acc;
-acc(81:120) = 0;
-acc(121:130) = -Acc;
-acc(131:140) = Acc;
-acc(141:160) = 0;
-acc(161:170) = Acc;
-acc(171:180) = -Acc;
-acc(181:201) = 0;
 
 timeStep= 0.01; %resultion on load cycle
-t=(0:timeStep:2); %time vector
+t=time(1:length(time)-2); %time vector
 tau = timeStep*length(t); %total time
 
-v = t;
-p = t;
-summation=0;
-summation2 = 0;
-
-for i=1 : length(acc)
-    summation = summation + acc(i)*timeStep;
-    v(i) = summation;
-    summation2= summation2 +v(i)*timeStep;
-    p(i) = summation2;
-end
-
-% Load Torque vector
-JL = 0.4;
-Tl = JL.*acc; %Load torque
+acc=kneeAcceleration;
+v=kneeVelocity(1:length(kneeVelocity)-1);
+p=kneeAngle(1:length(kneeAngle)-2);
+JL=0.2*0.15^2;
+Tl=kneeTorque(1:length(kneeTorque)-2);
 
 
 MaxLRPM = max(v)*60/(2*pi); %Maximum RPM during the loadcycle
@@ -90,7 +61,7 @@ legend('Load Torque', ['T_{RMS} ', num2str(Tlrms(1)),' Nm'], ['T_{Peak} ', num2s
 %print -depsc -tiff -f load.eps
 
 %Power...T*w
-figure(5)
+figure(6)
 Pl = Tl.*v;
 plot(t,Pl,'linewidth',1.5);
 %grid;

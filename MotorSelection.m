@@ -3,7 +3,6 @@
 % fredrikr@md.kth.se , www.md.kth.se
 % 2004
 
-close all;
 clear Trms Pmax Pmaxp Text_M No Trmso Pmeano Pmaxo Tpeak W;
 
 CandidateMotorData;     %Read data on candidate motors
@@ -59,7 +58,7 @@ for (i=1:length(Tm)) %Do this for all motors
         Trms(i,:) = sqrt((Jm(i)+Jg)^2*n.^2*k1+1./(n.^2*gearEff^2)*k2+2*(Jm(i)+Jg)/gearEff*k3); %Motor required RMS torque
         for(j=1 : length(n)) %For all gear ratios
             if (Trms(i,j) > Tm(i)) % The motor /gear ratio combination can NOT drive the load continous.
-                Trms(i,j) = NaN;   %Eliminate corresponding data points.
+                 Trms(i,j) = NaN;   %Eliminate corresponding data points.
                 Tpeak(i,j) = NaN;
                 Pmax(i,j) = NaN;
                 Pmaxp(i,j) = NaN;

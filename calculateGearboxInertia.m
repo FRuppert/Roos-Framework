@@ -30,9 +30,9 @@ function [gearbox]= calculateGearboxInertia
 
 %% Default Roos value:
 inertiaGearbox=0.0;
-gearRatioResolution=0.1;
+gearRatioResolution=0.5;
 gearRatioMin=0.1;
-gearRatioMax=40;
+gearRatioMax=15;
 
 gearbox(1,:)=[gearRatioMin:gearRatioResolution:gearRatioMax];
 gearbox(2,:)=ones(1,size(gearbox,2))*inertiaGearbox;

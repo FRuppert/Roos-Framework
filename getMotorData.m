@@ -44,34 +44,44 @@ tempID=0;
 % maxRPM(tempID)=5000;
 % continuousTorque(tempID)=2;
 
+%% Tmotor MN7005 KV115
+tempID=tempID+1;
+motorID(tempID)=tempID;
+motorName(tempID)= "MN7005KV115";
+speedConstant(tempID)=115;  %[rpm/V]
+resistance(tempID)=0.194;   %[Ohm]
+inertia(tempID)=0;  %[kgcm^2]
+maxRPM(tempID)=5000;
+continuousTorque(tempID)=1.32;  %[Nm]
+
 %% original Roos Motors
-%% PSA60/4-50
-tempID=tempID+1;
-motorID(tempID)=tempID;
-motorName(tempID)= "PSA60/4-50";
-speedConstant(tempID)=60/(2*pi*0.52);  %[rpm/V]
-resistance(tempID)=14.9;   %[Ohm]
-inertia(tempID)=0.79;  %[kgcm^2]
-maxRPM(tempID)=8000;
-continuousTorque(tempID)=0.76;
-%% PSA60/4-75
-tempID=tempID+1;
-motorID(tempID)=tempID;
-motorName(tempID)= "PSA60/4-75";
-speedConstant(tempID)=60/(2*pi*0.62);  %[rpm/V]
-resistance(tempID)=9;   %[Ohm]
-inertia(tempID)=0.98;  %[kgcm^2]
-maxRPM(tempID)=8000;
-continuousTorque(tempID)=1.2;
-%% PSA60/4-112
-tempID=tempID+1;
-motorID(tempID)=tempID;
-motorName(tempID)= "PSA60/4-112";
-speedConstant(tempID)=60/(2*pi*0.63);  %[rpm/V]
-resistance(tempID)=5.9;   %[Ohm]
-inertia(tempID)=1.28;  %[kgcm^2]
-maxRPM(tempID)=8000;
-continuousTorque(tempID)=1.8;
+% %% PSA60/4-50
+% tempID=tempID+1;
+% motorID(tempID)=tempID;
+% motorName(tempID)= "PSA60/4-50";
+% speedConstant(tempID)=60/(2*pi*0.52);  %[rpm/V]
+% resistance(tempID)=14.9;   %[Ohm]
+% inertia(tempID)=0.79;  %[kgcm^2]
+% maxRPM(tempID)=8000;
+% continuousTorque(tempID)=0.76;
+% %% PSA60/4-75
+% tempID=tempID+1;
+% motorID(tempID)=tempID;
+% motorName(tempID)= "PSA60/4-75";
+% speedConstant(tempID)=60/(2*pi*0.62);  %[rpm/V]
+% resistance(tempID)=9;   %[Ohm]
+% inertia(tempID)=0.98;  %[kgcm^2]
+% maxRPM(tempID)=8000;
+% continuousTorque(tempID)=1.2;
+% %% PSA60/4-112
+% tempID=tempID+1;
+% motorID(tempID)=tempID;
+% motorName(tempID)= "PSA60/4-112";
+% speedConstant(tempID)=60/(2*pi*0.63);  %[rpm/V]
+% resistance(tempID)=5.9;   %[Ohm]
+% inertia(tempID)=1.28;  %[kgcm^2]
+% maxRPM(tempID)=8000;
+% continuousTorque(tempID)=1.8;
 %% Create data matrix
 motorCandidates=[motorID; speedConstant; 60./(2*pi.*speedConstant); resistance; inertia.*1e-4; maxRPM; continuousTorque];
 
