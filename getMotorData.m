@@ -33,7 +33,7 @@ tempID=0;
 % inertia(tempID)=0.1294;  %[kgcm^2]
 % maxRPM(tempID)=6100;
 % continuousTorque(tempID)=2;
-% 
+
 % %% Tmotor 4006KV380
 % tempID=tempID+1;
 % motorID(tempID)=tempID;

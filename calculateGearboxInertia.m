@@ -32,7 +32,7 @@ function [gearbox]= calculateGearboxInertia
 inertiaGearbox=0.0;
 gearRatioResolution=0.5;
 gearRatioMin=0.1;
-gearRatioMax=15;
+gearRatioMax=30;
 
 gearbox(1,:)=[gearRatioMin:gearRatioResolution:gearRatioMax];
 gearbox(2,:)=ones(1,size(gearbox,2))*inertiaGearbox;
