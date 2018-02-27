@@ -1,4 +1,4 @@
-function  [  torqueRMS  ,torqueLoadRMS ,torquePeak ,torqueLoadMax, powerLoadMax, powerMax, energy,workLoad, motorName,gearbox   ]=selectMotor(accelPoints,torquePoints,timeStep)
+function  [  torqueRMS  ,torqueLoadRMS ,torquePeak ,torqueLoadMax, powerMax, work, motorName,gearbox   ]=selectMotor(accelPoints,torquePoints,timeStep)
 % the function sizes the motor/gear combinations
 
 %Constant
@@ -67,7 +67,7 @@ for idx=1:size(motors,2)
         if torqueRMS(idx,idx2)>motors(7,idx) % continuous torque rating
             torqueRMS(idx,idx2)= NaN;
             torquePeak(idx,idx2)=NaN;
-            powerLoadMax(idx,idx2)=NaN;
+            powerMax(idx,idx2)=NaN;
             work(idx,idx2)=NaN;
         else
             torqueInstant=(motors(5,idx)+gearbox(2,idx2))*accelPoints*gearbox(1,idx2)+torquePoints/(gearbox(1,idx2)*gearData(2));
@@ -76,9 +76,9 @@ for idx=1:size(motors,2)
             powerLoss= motors(4,idx)*torqueInstant.^2/motors(3,idx);
             [powerMax(idx,idx2),powerMaxindex(idx,idx2)]=max(powerLoss+powerMech);
             if(powerMech<0)
-                energy(idx,idx2)=0;
+                work(idx,idx2)=0;
             else
-                energy(idx,idx2)=sum(powerMech+powerLoss)*timeStep;
+                work(idx,idx2)=sum(powerMech+powerLoss)*timeStep;
             end
         end
     end
