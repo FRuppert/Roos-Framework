@@ -32,7 +32,11 @@ function [gearbox]= calculateGearboxInertia(motorRpmMax,gearboxRpmMax,loadRpmMax
 inertiaGearbox=0.0;
 gearRatioResolution=0.5;
 gearRatioMin=0.1;
-gearRatioMax= round(1/gearRatioResolution*min(motorRpmMax, gearboxRpmMax)/loadRpmMax)*gearRatioResolution;
+% gearRatioMax= round(1/gearRatioResolution*min(motorRpmMax,
+% gearboxRpmMax)/loadRpmMax)*gearRatioResolution; % only works for smooth
+% velocities. Otherwise the inegrated accelerations accumulate and the max
+% loadRPM exceed the motor and gear RPM and make the gear space smaller
+gearRatioMax= 30;
 
 gearbox(1,:)=[gearRatioMin:gearRatioResolution:gearRatioMax];
 gearbox(2,:)=ones(1,size(gearbox,2))*inertiaGearbox;
