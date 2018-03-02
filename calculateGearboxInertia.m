@@ -1,4 +1,4 @@
-function [gearbox]= calculateGearboxInertia
+function [gearbox]= calculateGearboxInertia(motorRpmMax,gearboxRpmMax,loadRpmMax)
 % THis function calculates thepossible gear ratio and sorts them by size
 % and calculates the complete reflected inertia of both spurgears for the
 % ratio 
@@ -32,7 +32,7 @@ function [gearbox]= calculateGearboxInertia
 inertiaGearbox=0.0;
 gearRatioResolution=0.5;
 gearRatioMin=0.1;
-gearRatioMax=30;
+gearRatioMax= round(1/gearRatioResolution*min(motorRpmMax, gearboxRpmMax)/loadRpmMax)*gearRatioResolution;
 
 gearbox(1,:)=[gearRatioMin:gearRatioResolution:gearRatioMax];
 gearbox(2,:)=ones(1,size(gearbox,2))*inertiaGearbox;

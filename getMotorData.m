@@ -31,28 +31,28 @@ tempID=0;
 % speedConstant(tempID)=300;  %[rpm/V]
 % resistance(tempID)=0.2325;   %[Ohm]
 % inertia(tempID)=0.1294;  %[kgcm^2]
-% maxRPM(tempID)=6100;
-% continuousTorque(tempID)=2;
+% maxRPM(tempID)=5400;
+% continuousTorque(tempID)=0.4;
 
-% %% Tmotor 4006KV380
-% tempID=tempID+1;
-% motorID(tempID)=tempID;
-% motorName(tempID)= "4006KV380";
-% speedConstant(tempID)=380;  %[rpm/V]
-% resistance(tempID)=0.194;   %[Ohm]
-% inertia(tempID)=0;  %[kgcm^2]
-% maxRPM(tempID)=5000;
-% continuousTorque(tempID)=2;
-
-%% Tmotor MN7005 KV115
+%% Tmotor 4006KV380
 tempID=tempID+1;
 motorID(tempID)=tempID;
-motorName(tempID)= "MN7005KV115";
-speedConstant(tempID)=115;  %[rpm/V]
+motorName(tempID)= "4006KV380";
+speedConstant(tempID)=380;  %[rpm/V]
 resistance(tempID)=0.194;   %[Ohm]
 inertia(tempID)=0;  %[kgcm^2]
-maxRPM(tempID)=5000;
-continuousTorque(tempID)=1.32;  %[Nm]
+maxRPM(tempID)=5400;
+continuousTorque(tempID)=0.44;
+
+% %% Tmotor MN7005 KV115
+% tempID=tempID+1;
+% motorID(tempID)=tempID;
+% motorName(tempID)= "MN7005KV115";
+% speedConstant(tempID)=115;  %[rpm/V]
+% resistance(tempID)=0.194;   %[Ohm]
+% inertia(tempID)=0;  %[kgcm^2]
+% maxRPM(tempID)=4000;
+% continuousTorque(tempID)=1.32;  %[Nm]
 
 %% original Roos Motors
 % %% PSA60/4-50

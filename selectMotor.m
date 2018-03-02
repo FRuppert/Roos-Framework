@@ -5,16 +5,25 @@ function  [  torqueRMS  ,torqueLoadRMS ,torquePeak ,torqueLoadMax, powerMax, wor
 % gearRatioResolution=0.1;
 
 
+% integrate accelerations 
+[velocity,position]=integrateAcceleration(accelPoints,timeStep);
+
 %load motor data
 [motors, motorName]=getMotorData;
 
 %load gear data
 [gearData,teeth]=getGearData;
-gearbox=calculateGearboxInertia;
-
-[velocity,position]=integrateAcceleration(accelPoints,timeStep);
-%calculate matrix
 loadRpmMax=max(velocity)*60/(2*pi);
+motorRpmMax=motors(6,1);
+gearboxRpmMax=gearData(1,1);
+
+
+
+gearbox=calculateGearboxInertia(motorRpmMax,gearboxRpmMax,loadRpmMax);
+
+
+
+
 
 %calculate Load constants
 [k1,k2,k3]=calculateLoadConstants(accelPoints,torquePoints,timeStep);

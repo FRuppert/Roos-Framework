@@ -9,8 +9,8 @@ function [gearData,teeth]=getGearData
 % 5: thickness
 % teeth: array of possible teeth counts
 %% Gear candidate 1
-maxGearRPM = 6000;  %Max ang. vel (motor side) RPM
-gearEff = 0.97;     %Efficiency
+maxGearRPM = 5000;  %Max ang. vel (motor side) RPM
+gearEff = 0.701;     %Efficiency
 density= 1.4;       %[g/cm^3]
 modul=1;            %gear modul
 thickness=5;        %[mm]
